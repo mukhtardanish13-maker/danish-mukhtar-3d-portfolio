@@ -248,7 +248,7 @@ export default function HomePage() {
               Featured <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">Video Showcases</span>
             </h2>
             <p className="text-gray-400 text-base sm:text-lg max-w-3xl mx-auto font-light">
-              Watch Danish Mukhtar&apos;s dual video showcases — featuring the <strong className="text-purple-300">danuai</strong> intelligent AI demonstration and the official <strong className="text-pink-300">Danish Mukhtar</strong> developer presentation.
+              Watch Danish Mukhtar&apos;s dual video showcases — featuring the <strong className="text-purple-300">danuai</strong> intelligent AI demonstration and the official <strong className="text-pink-300">Danish Mukhtar</strong> video showcase.
             </p>
           </motion.div>
 
@@ -334,11 +334,6 @@ export default function HomePage() {
                     className="w-full h-full object-cover"
                   />
 
-                  {/* Status Overlay */}
-                  <div className="absolute top-3 left-3 z-20 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/75 backdrop-blur-md border border-white/10 text-[11px] text-white">
-                    <span className="h-2 w-2 rounded-full bg-pink-500 animate-ping" />
-                    <span className="font-mono font-semibold tracking-wider">DANISH MUKHTAR • PRESENTATION</span>
-                  </div>
 
                   {/* Audio Toggle */}
                   <div className="absolute bottom-3 right-3 z-20">
@@ -354,7 +349,7 @@ export default function HomePage() {
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
                     <div className="inline-block px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 text-xs font-semibold uppercase tracking-wider mb-2">
-                      Developer Presentation
+                      Featured Video
                     </div>
                     <h3 className="text-xl sm:text-2xl font-black text-white mb-2">
                       Danish Mukhtar — Portfolio &amp; Engineering
