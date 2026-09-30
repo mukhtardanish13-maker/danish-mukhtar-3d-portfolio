@@ -25,7 +25,8 @@ const ContactScene = dynamic(() => import('@/components/3d/ContactScene'), {
 });
 
 export default function HomePage() {
-  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const [isDanuMuted, setIsDanuMuted] = useState(true);
+  const [isDanishMuted, setIsDanishMuted] = useState(true);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -36,12 +37,20 @@ export default function HomePage() {
     message: '',
   });
 
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const danuVideoRef = useRef<HTMLVideoElement>(null);
+  const danishVideoRef = useRef<HTMLVideoElement>(null);
 
-  const toggleVideoMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsVideoMuted(videoRef.current.muted);
+  const toggleDanuMute = () => {
+    if (danuVideoRef.current) {
+      danuVideoRef.current.muted = !danuVideoRef.current.muted;
+      setIsDanuMuted(danuVideoRef.current.muted);
+    }
+  };
+
+  const toggleDanishMute = () => {
+    if (danishVideoRef.current) {
+      danishVideoRef.current.muted = !danishVideoRef.current.muted;
+      setIsDanishMuted(danishVideoRef.current.muted);
     }
   };
 
@@ -216,14 +225,14 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. AI VIDEO SHOWCASE SECTION (danuai.mp4)                                  */}
+      {/* 2. DUAL VIDEO SHOWCASE SECTION (danuai.mp4 & danish-mukhtar.mp4)           */}
       {/* ========================================================================= */}
       <section id="ai-video" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-[#07070c] via-[#0d0d17] to-[#07070c]">
         {/* Futuristic Cyber Grid & Glows */}
         <div className="absolute inset-0 bg-[radial-gradient(#7c3aed15_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-purple-600/10 rounded-full blur-[160px] pointer-events-none" />
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -233,54 +242,136 @@ export default function HomePage() {
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-purple-300 text-xs sm:text-sm font-semibold mb-4">
               <span className="animate-spin text-purple-400">⚡</span>
-              <span>Proprietary AI Demonstration</span>
+              <span>Proprietary Video Demonstrations</span>
             </div>
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-4">
-              Watch <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">danuai</span> In Action
+              Featured <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">Video Showcases</span>
             </h2>
-            <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto font-light">
-              Experience Danish Mukhtar&apos;s AI showcase video demonstration highlighting next-generation AI agents,
-              neural workflows, and high-performance interactive computing.
+            <p className="text-gray-400 text-base sm:text-lg max-w-3xl mx-auto font-light">
+              Watch Danish Mukhtar&apos;s dual video showcases — featuring the <strong className="text-purple-300">danuai</strong> intelligent AI demonstration and the official <strong className="text-pink-300">Danish Mukhtar</strong> developer presentation.
             </p>
           </motion.div>
 
-          {/* 3D Cyber Video Frame */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative mx-auto max-w-4xl rounded-3xl p-1 bg-gradient-to-br from-purple-500 via-indigo-600 to-pink-500 shadow-2xl shadow-purple-950/80"
-          >
-            <div className="relative rounded-[22px] overflow-hidden bg-black aspect-video flex items-center justify-center group">
-              <video
-                ref={videoRef}
-                src="/danuai.mp4"
-                controls
-                autoPlay
-                loop
-                muted={isVideoMuted}
-                playsInline
-                className="w-full h-full object-cover"
-              />
+          {/* 2-Column Cyber Video Showcase Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+            {/* Video Card 1: danuai */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col rounded-3xl p-1 bg-gradient-to-br from-purple-500 via-indigo-600 to-pink-500 shadow-2xl shadow-purple-950/80"
+            >
+              <div className="rounded-[22px] overflow-hidden bg-black p-4 sm:p-5 flex flex-col h-full">
+                <div className="relative rounded-2xl overflow-hidden bg-gray-950 aspect-video flex items-center justify-center group mb-4">
+                  <video
+                    ref={danuVideoRef}
+                    src="/danuai.mp4"
+                    controls
+                    autoPlay
+                    loop
+                    muted={isDanuMuted}
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
 
-              {/* Top Video Status Overlay */}
-              <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-xs text-white">
-                <span className="h-2 w-2 rounded-full bg-red-500 animate-ping" />
-                <span className="font-mono tracking-wider">DANUAI • AI SHOWCASE</span>
-              </div>
+                  {/* Status Overlay */}
+                  <div className="absolute top-3 left-3 z-20 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/75 backdrop-blur-md border border-white/10 text-[11px] text-white">
+                    <span className="h-2 w-2 rounded-full bg-red-500 animate-ping" />
+                    <span className="font-mono font-semibold tracking-wider">DANUAI • AI SHOWCASE</span>
+                  </div>
 
-              {/* Sound Toggle Button */}
-              <div className="absolute bottom-4 right-4 z-20 flex items-center gap-2">
-                <button
-                  onClick={toggleVideoMute}
-                  className="px-3.5 py-2 rounded-xl bg-black/80 hover:bg-purple-900/80 backdrop-blur-md border border-purple-500/40 text-xs font-semibold text-white transition-all shadow-lg flex items-center gap-1.5"
-                >
-                  <span>{isVideoMuted ? '🔇 Unmute Audio' : '🔊 Mute Audio'}</span>
-                </button>
+                  {/* Audio Toggle */}
+                  <div className="absolute bottom-3 right-3 z-20">
+                    <button
+                      onClick={toggleDanuMute}
+                      className="px-3 py-1.5 rounded-lg bg-black/80 hover:bg-purple-900/80 backdrop-blur-md border border-purple-500/40 text-xs font-semibold text-white transition-all shadow-lg flex items-center gap-1.5"
+                    >
+                      <span>{isDanuMuted ? '🔇 Unmute' : '🔊 Muted'}</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="inline-block px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                      AI Innovation
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-black text-white mb-2">
+                      danuai — Autonomous AI In Action
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                      Demonstration of custom autonomous AI agents, neural workflows, and high-performance intelligent computing built by Danish Mukhtar.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-white/10 text-xs text-purple-300">
+                    <span className="px-2.5 py-1 rounded-lg bg-purple-950/60 border border-purple-800/40">✦ LLM Workflows</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-purple-950/60 border border-purple-800/40">✦ Multi-Agent AI</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-purple-950/60 border border-purple-800/40">✦ Computer Vision</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* Video Card 2: danish mukhtar */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex flex-col rounded-3xl p-1 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-500 shadow-2xl shadow-pink-950/80"
+            >
+              <div className="rounded-[22px] overflow-hidden bg-black p-4 sm:p-5 flex flex-col h-full">
+                <div className="relative rounded-2xl overflow-hidden bg-gray-950 aspect-video flex items-center justify-center group mb-4">
+                  <video
+                    ref={danishVideoRef}
+                    src="/danish-mukhtar.mp4"
+                    controls
+                    autoPlay
+                    loop
+                    muted={isDanishMuted}
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+
+                  {/* Status Overlay */}
+                  <div className="absolute top-3 left-3 z-20 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/75 backdrop-blur-md border border-white/10 text-[11px] text-white">
+                    <span className="h-2 w-2 rounded-full bg-pink-500 animate-ping" />
+                    <span className="font-mono font-semibold tracking-wider">DANISH MUKHTAR • PRESENTATION</span>
+                  </div>
+
+                  {/* Audio Toggle */}
+                  <div className="absolute bottom-3 right-3 z-20">
+                    <button
+                      onClick={toggleDanishMute}
+                      className="px-3 py-1.5 rounded-lg bg-black/80 hover:bg-pink-900/80 backdrop-blur-md border border-pink-500/40 text-xs font-semibold text-white transition-all shadow-lg flex items-center gap-1.5"
+                    >
+                      <span>{isDanishMuted ? '🔇 Unmute' : '🔊 Muted'}</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="inline-block px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                      Developer Presentation
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-black text-white mb-2">
+                      Danish Mukhtar — Portfolio &amp; Engineering
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                      Official video introduction highlighting software craftsmanship, full-stack capabilities, mobile app development, and technical problem-solving.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-white/10 text-xs text-pink-300">
+                    <span className="px-2.5 py-1 rounded-lg bg-pink-950/60 border border-pink-800/40">✦ Full Stack Dev</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-pink-950/60 border border-pink-800/40">✦ Mobile Apps</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-pink-950/60 border border-pink-800/40">✦ 3D WebGL</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
           {/* Video Highlights Tags */}
           <motion.div
